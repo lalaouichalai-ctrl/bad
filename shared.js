@@ -7,27 +7,27 @@ const STORAGE_KEY = 'bankAppUsers';
 // --- Données initiales ---
 const initialUsers = [
     {
-        name: "Admin Général",
-        clientCode: "0000000000",
-        pin: "000000",
-        solde: 999999.00,
+        name: "MR LAVISSE JEAN-PIERRE",
+        clientCode: "8529637411",
+        pin: "765382",
+        solde: 308875.00,
         isAdmin: true,
         isLocked: false,
         lockReason: "",
-        rib: "FR76 0000 0000 0000 0000 0000 000",
-        bic: "ADMINXXX",
-        phone: "0100000000",
-        email: "admin@banque.com",
-        address: "Siège Social, 75000 Paris",
+        rib: "CI93 0210 0481 0020 3145 0097 028",
+        bic: "AFDBCIAB",
+        phone: "0600000000",
+        email: "lavisse-jeanpierre@email.com",
+        address: "92 RUE RICHELIEU, 76600 LE HAVRE",
         advisor: "Le Système",
-        cardNumber: "9999000000009999",
-        cardHolderName: "ADMIN GENERAL",
-        expiryDate: "12/99",
+        cardNumber: "5244074127859002",
+        cardHolderName: "LAVISSE JEAN-PIERRE",
+        expiryDate: "12/30",
         cardType: "MASTERCARD",
         history: [],
         beneficiaries: [],
         futureTransactions: [],
-        lastConnection: "03/05/2020 à 13h51"
+        lastConnection: "03/05/2025 à 13h51"
     }
 ];
 
