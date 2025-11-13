@@ -11,7 +11,7 @@ const initialUsers = [
         clientCode: "8529637411",
         pin: "765382",
         solde: 308875.00,
-        isAdmin: true,
+        isAdmin: false,
         isLocked: false,
         lockReason: "",
         rib: "CI93 0210 0481 0020 3145 0097 028",
