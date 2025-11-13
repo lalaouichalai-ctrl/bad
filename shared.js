@@ -1,18 +1,18 @@
 // =======================================================
-// shared.js (MISE À JOUR : 1 Admin + 1 Nouvel Utilisateur)
+// shared.js (FINAL : 1 Admin + 1 Utilisateur Standard)
 // =======================================================
 
 const STORAGE_KEY = 'bankAppUsers';
 
-// --- Données initiales ---
+// --- Données initiales : 2 Utilisateurs au total ---
 const initialUsers = [
-    // 1. UTILISATEUR ADMIN GÉNÉRAL (RÉFÉRENCE)
+    // 1. UTILISATEUR ADMIN GÉNÉRAL
     {
         name: "Admin Général",
         clientCode: "0000000000",
         pin: "000000",
         solde: 999999.00,
-        isAdmin: true,
+        isAdmin: true, // Statut : ADMINISTRATEUR
         isLocked: false,
         lockReason: "",
         rib: "FR76 0000 0000 0000 0000 0000 000",
@@ -28,15 +28,15 @@ const initialUsers = [
         history: [],
         beneficiaries: [],
         futureTransactions: [],
-        lastConnection: "03/05/2025 à 13h51" // Date mise à jour
+        lastConnection: "03/05/2025 à 13h51"
     },
-    // 2. UTILISATEUR MR LAVISSE JEAN-PIERRE
+    // 2. UTILISATEUR STANDARD : MR LAVISSE JEAN-PIERRE
     {
         name: "MR LAVISSE JEAN-PIERRE",
         clientCode: "8529637411",
         pin: "765382",
         solde: 308875.00,
-        isAdmin: true, // Défini comme Admin selon votre demande
+        isAdmin: false, // Statut : UTILISATEUR STANDARD
         isLocked: false,
         lockReason: "",
         rib: "CI93 0210 0481 0020 3145 0097 028",
@@ -56,7 +56,7 @@ const initialUsers = [
     }
 ];
 
-// --- Fonctions de base (identiques au code précédent) ---
+// --- Fonctions de base (inchangées) ---
 function getUsers() {
     let users = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!users || users.length === 0) {
@@ -115,7 +115,7 @@ function addPastHistory(clientCode, transaction) {
     return false;
 }
 
-// --- Fonctions utilitaires (identiques au code précédent) ---
+// --- Fonctions utilitaires (inchangées) ---
 function formatCurrency(amount) {
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(amount);
 }
