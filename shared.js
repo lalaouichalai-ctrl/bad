@@ -1,17 +1,42 @@
 // =======================================================
-// shared.js (CORRIGÉ ET COMPLET)
+// shared.js (CORRIGÉ ET COMPLET avec 6 utilisateurs)
 // =======================================================
 
 const STORAGE_KEY = 'bankAppUsers';
 
 // --- Données initiales ---
 const initialUsers = [
+    // 1. UTILISATEUR ADMIN (Initial)
     {
+        name: "Admin Général",
+        clientCode: "0000000000",
+        pin: "000000",
+        solde: 999999.00,
+        isAdmin: true,
+        isLocked: false,
+        lockReason: "",
+        rib: "FR76 0000 0000 0000 0000 0000 000",
+        bic: "ADMINXXX",
+        phone: "0100000000",
+        email: "admin@banque.com",
+        address: "Siège Social, 75000 Paris",
+        advisor: "Le Système",
+        cardNumber: "9999000000009999",
+        cardHolderName: "ADMIN GENERAL",
+        expiryDate: "12/99",
+        cardType: "MASTERCARD",
+        history: [],
+        beneficiaries: [],
+        futureTransactions: [],
+        lastConnection: "03/05/2020 à 13h51"
+    },
+    // 2. UTILISATEUR 1
+     {
         name: "MR LAVISSE JEAN-PIERRE",
         clientCode: "8529637411",
         pin: "765382",
         solde: 308875.00,
-        isAdmin: false,
+        isAdmin: true,
         isLocked: false,
         lockReason: "",
         rib: "CI93 0210 0481 0020 3145 0097 028",
@@ -28,10 +53,106 @@ const initialUsers = [
         beneficiaries: [],
         futureTransactions: [],
         lastConnection: "03/05/2025 à 13h51"
+    },
+    // 3. UTILISATEUR 2
+    {
+        name: "Petit Sophie",
+        clientCode: "2222222222",
+        pin: "222222",
+        solde: 12500.80,
+        isAdmin: false,
+        isLocked: false,
+        lockReason: "",
+        rib: "FR76 2222 2222 2222 2222 2222 222",
+        bic: "PETISOPH",
+        phone: "0622222222",
+        email: "sophie.petit@mail.com",
+        address: "22 Avenue des Champs, 75008 Paris",
+        advisor: "Mr Dupont",
+        cardNumber: "4000222222222222",
+        cardHolderName: "SOPHIE PETIT",
+        expiryDate: "05/28",
+        cardType: "VISA PREMIUM",
+        history: [{ date: "05/11/2025", label: "Achat Ordinateur", amount: -1200.00, type: "Débit" }],
+        beneficiaries: [],
+        futureTransactions: [{ date: "01/12/2025", label: "Loyer", amount: -850.00, status: "Prévu" }],
+        lastConnection: "13/11/2025 à 09h00"
+    },
+    // 4. UTILISATEUR 3
+    {
+        name: "Lefevre Pierre",
+        clientCode: "3333333333",
+        pin: "333333",
+        solde: 350.00,
+        isAdmin: false,
+        isLocked: false,
+        lockReason: "",
+        rib: "FR76 3333 3333 3333 3333 3333 333",
+        bic: "LEFEP",
+        phone: "0633333333",
+        email: "pierre.lefevre@mail.com",
+        address: "33 Rue de la Gare, 31000 Toulouse",
+        advisor: "Mme Martin",
+        cardNumber: "4000333333333333",
+        cardHolderName: "PIERRE LEFEVRE",
+        expiryDate: "03/26",
+        cardType: "MASTERCARD",
+        history: [{ date: "10/11/2025", label: "Courses Carrefour", amount: -75.50, type: "Débit" }],
+        beneficiaries: [],
+        futureTransactions: [],
+        lastConnection: "12/11/2025 à 18h30"
+    },
+    // 5. UTILISATEUR 4
+    {
+        name: "Durand Camille",
+        clientCode: "4444444444",
+        pin: "444444",
+        solde: 45000.00,
+        isAdmin: false,
+        isLocked: false,
+        lockReason: "",
+        rib: "FR76 4444 4444 4444 4444 4444 444",
+        bic: "DURACAM",
+        phone: "0644444444",
+        email: "camille.durand@mail.com",
+        address: "4 Rue du Soleil, 13008 Marseille",
+        advisor: "Mr Dubois",
+        cardNumber: "4000444444444444",
+        cardHolderName: "CAMILLE DURAND",
+        expiryDate: "07/29",
+        cardType: "VISA PLATINUM",
+        history: [{ date: "01/11/2025", label: "Versement Épargne", amount: 5000.00, type: "Crédit" }],
+        beneficiaries: [],
+        futureTransactions: [],
+        lastConnection: "13/11/2025 à 07h45"
+    },
+    // 6. UTILISATEUR 5
+    {
+        name: "Leroy Paul",
+        clientCode: "5555555555",
+        pin: "555555",
+        solde: 1500.00,
+        isAdmin: false,
+        isLocked: true, // Compte verrouillé
+        lockReason: "Compte en attente de vérification",
+        rib: "FR76 5555 5555 5555 5555 5555 555",
+        bic: "LEROYPAU",
+        phone: "0655555555",
+        email: "paul.leroy@mail.com",
+        address: "55 Place du Marché, 34000 Montpellier",
+        advisor: "Mme Martin",
+        cardNumber: "4000555555555555",
+        cardHolderName: "PAUL LEROY",
+        expiryDate: "01/26",
+        cardType: "MASTERCARD",
+        history: [{ date: "08/11/2025", label: "Remboursement Mutuelle", amount: 150.00, type: "Crédit" }],
+        beneficiaries: [],
+        futureTransactions: [],
+        lastConnection: "11/11/2025 à 16h00"
     }
 ];
 
-// --- Fonctions de base ---
+// --- Fonctions de base (pas de changement) ---
 function getUsers() {
     let users = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!users || users.length === 0) {
@@ -90,7 +211,7 @@ function addPastHistory(clientCode, transaction) {
     return false;
 }
 
-// --- Fonctions utilitaires ---
+// --- Fonctions utilitaires (pas de changement) ---
 function formatCurrency(amount) {
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(amount);
 }
